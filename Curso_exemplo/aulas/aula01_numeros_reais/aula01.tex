@@ -72,6 +72,7 @@
   \item Reconhecer números irracionais e diferenciá-los dos racionais.
   \item Localizar números reais na reta numérica.
   \item Compreender a organização dos conjuntos $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$.
+  \item (Enriquecimento) Conhecer a unidade imaginária $i$ e os números complexos.
 \end{itemize}
 
 \paragraph{Duração prevista:} 2 aulas de 50 minutos.
@@ -315,6 +316,118 @@ $\pi \approx 3{,}1416$; \ $\frac{22}{7} \approx 3{,}1429$. Logo,
 \end{exemplo}
 
 % =========================================================
+\section{Para ir além: uma introdução aos números complexos}
+
+\noindent\emph{Esta seção é um enriquecimento. Os números complexos não fazem
+parte da BNCC do 9º ano e costumam ser estudados no Ensino Médio.}
+
+\medskip
+Vimos que a reta real é ``completa'': a cada ponto corresponde um número real.
+Mesmo assim, uma pergunta simples fica sem resposta:
+\[
+  \text{Existe um número real } x \text{ tal que } x^2 = -1 \,?
+\]
+\textbf{Não.} O quadrado de qualquer número real nunca é negativo:
+\[
+  (+)\cdot(+) = (+), \qquad (-)\cdot(-) = (+), \qquad 0 \cdot 0 = 0 .
+\]
+Por isso, $\sqrt{-1}$, $\sqrt{-4}$ e $\sqrt{-9}$ \emph{não} são números reais.
+
+\subsection*{Um pouco de história}
+No século XVI, os matemáticos italianos Girolamo Cardano e Rafael Bombelli
+estudavam fórmulas para resolver equações do 3º grau. Na equação
+$x^3 = 15x + 4$, cuja solução é $x = 4$, a fórmula de Cardano produzia raízes
+quadradas de números negativos, como $\sqrt{-121}$, no meio das contas.
+Bombelli decidiu calcular com esses números ``impossíveis'' como se fossem
+números comuns, e chegou à resposta correta. Assim nasceram os números que
+hoje chamamos de \textbf{complexos}.
+
+\begin{definicao}[: Números complexos]
+A \textbf{unidade imaginária} é o número $i$ tal que
+\[
+  i^2 = -1 .
+\]
+Um \textbf{número complexo} é um número da forma
+\[
+  z = a + bi, \qquad \text{com } a, b \in \mathbb{R}.
+\]
+O número $a$ é a \textbf{parte real} de $z$, e $b$ é a \textbf{parte imaginária}.
+O conjunto dos números complexos é indicado por $\mathbb{C}$.
+\end{definicao}
+
+\begin{itemize}[nosep]
+  \item Se $b = 0$, então $z = a$ é um número real. Assim, todo real é complexo e
+  \[
+    \mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}.
+  \]
+  \item Se $a = 0$ e $b \neq 0$, dizemos que $z = bi$ é um \textbf{imaginário puro}
+        (por exemplo, $3i$ e $-\sqrt{2}\,i$).
+\end{itemize}
+
+\begin{exemplo}[: raízes de números negativos]
+\begin{itemize}[nosep]
+  \item $\sqrt{-9} = 3i$, pois $(3i)^2 = 9 \cdot i^2 = 9 \cdot (-1) = -9$.
+  \item $\sqrt{-2} = \sqrt{2}\, i$, pois $(\sqrt{2}\, i)^2 = 2 \cdot i^2 = -2$.
+  \item A equação $x^2 + 4 = 0$ não tem solução real, mas em $\mathbb{C}$:
+        $x^2 = -4 \;\Rightarrow\; x = 2i$ \ ou \ $x = -2i$.
+\end{itemize}
+\end{exemplo}
+
+\subsection*{Operando com números complexos}
+Somamos e multiplicamos como fazemos com expressões algébricas, lembrando
+sempre que \mbox{$i^2 = -1$}.
+
+\begin{exemplo}[: soma e produto]
+\begin{itemize}[nosep]
+  \item $(2 + 3i) + (1 - 5i) = (2 + 1) + (3 - 5)i = 3 - 2i$.
+  \item $(1 + i)(1 - i) = 1 - i + i - i^2 = 1 - (-1) = 2$.
+        \quad\emph{O produto de dois complexos não reais pode ser real!}
+  \item $(1 + i)^2 = 1 + 2i + i^2 = 1 + 2i - 1 = 2i$.
+\end{itemize}
+\end{exemplo}
+
+As potências de $i$ se repetem de 4 em 4:
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c|c|c|c|c|c}
+  $i^1$ & $i^2$ & $i^3$ & $i^4$ & $i^5$ & $\cdots$ \\ \hline
+  $i$   & $-1$  & $-i$  & $1$   & $i$   & $\cdots$
+\end{tabular}
+\end{center}
+
+\subsection*{O plano complexo}
+Os números reais ocupam toda a reta. Para representar os complexos, precisamos
+de um \textbf{plano}: o número $a + bi$ corresponde ao ponto $(a, b)$. O eixo
+horizontal é a própria reta real, e o eixo vertical é o eixo imaginário.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+  \draw[step=1, gray!25] (-3.5,-2.5) grid (3.5,3.5);
+  \draw[-{Latex}] (-3.7,0) -- (3.9,0) node[right] {\small Re};
+  \draw[-{Latex}] (0,-2.7) -- (0,3.9) node[above] {\small Im};
+  \foreach \x in {-3,-2,-1,1,2,3}
+    \node[below, gray] at (\x,0) {\scriptsize $\x$};
+  \node[left, gray] at (0,1) {\scriptsize $i$};
+  % 3 + 2i com projeções
+  \draw[dashed, blue!60!black] (3,0) -- (3,2) -- (0,2);
+  \fill[blue!60!black] (3,2) circle (0.09) node[above right] {$3 + 2i$};
+  \fill[blue!60!black] (-2,1) circle (0.09) node[above left] {$-2 + i$};
+  \fill[blue!60!black] (-1,-2) circle (0.09) node[below left] {$-1 - 2i$};
+  \fill[red] (2,0) circle (0.09) node[above] {$2$};
+  \fill[orange!80!black] (0,3) circle (0.09) node[right] {$3i$};
+\end{tikzpicture}
+\end{center}
+
+\noindent O ponto vermelho ($2$) é real e fica sobre o eixo horizontal. O
+ponto laranja ($3i$) é imaginário puro e fica sobre o eixo vertical.
+
+\begin{atencao}
+Nos reais podemos sempre comparar dois números. Nos complexos \textbf{não}
+existe uma ordem compatível com as operações: não faz sentido dizer que
+$i > 0$ ou que $2 + i < 3i$.
+\end{atencao}
+
+% =========================================================
 \section{Exercícios}
 \begin{enumerate}[label=\textbf{\arabic*.}]
 
@@ -394,6 +507,16 @@ $\pi \approx 3{,}1416$; \ $\frac{22}{7} \approx 3{,}1429$. Logo,
   ``\,$\sqrt{2}$ é racional, pois tem uma quantidade finita de casas decimais''.
   Explique o erro de Júlia.
 
+  \item \textbf{(Enriquecimento: números complexos)}
+  \begin{multicols}{2}
+  \begin{enumerate}[label=\alph*)]
+    \item Resolva em $\mathbb{C}$: $x^2 + 9 = 0$.
+    \item Calcule $(2 + i) + (3 - 4i)$.
+    \item Calcule $(2 + i)(2 - i)$.
+    \item Calcule $i^3$ e $i^4$.
+  \end{enumerate}
+  \end{multicols}
+
 \end{enumerate}
 
 \begin{desafio}
@@ -455,6 +578,11 @@ Sabendo que $\sqrt{2}$ é irracional, mostre que os números abaixo também são
         $1{,}414213562$ é uma \emph{aproximação} de $\sqrt{2}$ (de fato,
         $1{,}414213562^2 \neq 2$). A representação decimal de $\sqrt{2}$ é infinita e
         não periódica.
+
+  \item a) $x^2 = -9 \Rightarrow x = 3i$ ou $x = -3i$. \quad
+        b) $5 - 3i$. \quad
+        c) $4 - 2i + 2i - i^2 = 4 + 1 = 5$. \quad
+        d) $i^3 = i^2 \cdot i = -i$ \ e \ $i^4 = (i^2)^2 = 1$.
 
 \end{enumerate}
 
