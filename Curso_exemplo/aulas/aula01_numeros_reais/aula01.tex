@@ -1,0 +1,470 @@
+% =========================================================
+%  Curso de Matemática -- 9º ano do Ensino Fundamental
+%  Aula 01: Números Reais
+% =========================================================
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Idioma e codificação ----------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+
+% ---------- Layout ----------
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+% ---------- Matemática ----------
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{siunitx}
+\sisetup{locale = FR, group-separator = {.}}
+
+% ---------- Figuras ----------
+\usepackage{tikz}
+\usetikzlibrary{calc, angles, quotes, arrows.meta}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% ---------- Caixas ----------
+\usepackage[most]{tcolorbox}
+\newtcolorbox{definicao}[1][]{colback=blue!5, colframe=blue!60!black,
+  fonttitle=\bfseries, title={Definição#1}}
+\newtcolorbox{exemplo}[1][]{colback=green!5, colframe=green!50!black,
+  fonttitle=\bfseries, title={Exemplo#1}}
+\newtcolorbox{atencao}{colback=orange!8, colframe=orange!80!black,
+  fonttitle=\bfseries, title={Atenção!}}
+\newtcolorbox{desafio}{colback=red!5, colframe=red!60!black,
+  fonttitle=\bfseries, title={Desafio}}
+
+% ---------- Links ----------
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, linkcolor=blue!60!black, urlcolor=blue!60!black}
+
+% ---------- Cabeçalho e rodapé ----------
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Matemática -- 9º ano}
+\rhead{Aula 01}
+\cfoot{\thepage}
+
+% ---------- Dados da aula ----------
+\newcommand{\numaula}{01}
+\newcommand{\tituloaula}{Números Reais}
+
+\begin{document}
+
+% =========================================================
+\begin{center}
+  {\Large\bfseries Aula \numaula: \tituloaula}\\[4pt]
+  {\large Matemática -- 9º ano do Ensino Fundamental}\\[2pt]
+  Professor(a): \rule{6cm}{0.4pt} \qquad Data: \rule{3cm}{0.4pt}
+\end{center}
+\noindent\rule{\linewidth}{0.8pt}
+
+\paragraph{Habilidades da BNCC:} EF09MA01, EF09MA02.
+
+\paragraph{Objetivos de aprendizagem:}
+\begin{itemize}[nosep]
+  \item Reconhecer números irracionais e diferenciá-los dos racionais.
+  \item Localizar números reais na reta numérica.
+  \item Compreender a organização dos conjuntos $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$.
+\end{itemize}
+
+\paragraph{Duração prevista:} 2 aulas de 50 minutos.
+
+\paragraph{Materiais:} régua, compasso, papel quadriculado e calculadora.
+
+% =========================================================
+\section{Motivação}
+
+Observe a figura abaixo. O quadrado maior tem lado $2$ e está dividido em
+quatro quadradinhos de lado $1$. Ligando os pontos médios dos lados,
+obtemos um quadrado inclinado (em azul).
+
+\begin{center}
+\begin{tikzpicture}[scale=1.4]
+  \draw[step=1, gray] (0,0) grid (2,2);
+  \draw[very thick] (0,0) rectangle (2,2);
+  \filldraw[fill=blue!20, draw=blue!70!black, very thick]
+    (1,0) -- (2,1) -- (1,2) -- (0,1) -- cycle;
+  \node at (1,1) {\small área $=2$};
+  \node[below] at (0.5,0) {\small $1$};
+  \node[below] at (1.5,0) {\small $1$};
+\end{tikzpicture}
+\end{center}
+
+O quadrado azul é formado por quatro metades de quadradinhos, então sua área
+é $4 \cdot \frac{1}{2} = 2$. Portanto, a medida $\ell$ do seu lado satisfaz
+\[
+  \ell^2 = 2 .
+\]
+
+\begin{itemize}
+  \item Será que $\ell = 1{,}4$? Calcule $1{,}4^2$.
+  \item E $\ell = 1{,}41$? E $\ell = 1{,}42$?
+  \item Existe alguma fração $\frac{a}{b}$ cujo quadrado é exatamente $2$?
+\end{itemize}
+
+Os matemáticos da escola de Pitágoras (Grécia, por volta de 500 a.C.)
+acreditavam que todas as medidas poderiam ser escritas como razões de números
+inteiros. A descoberta de que \emph{isso não acontece} com o lado desse quadrado
+foi um choque, e é o ponto de partida desta aula.
+
+% =========================================================
+\section{Conjuntos numéricos: uma revisão}
+
+\begin{definicao}[: Naturais, Inteiros e Racionais]
+\begin{itemize}[nosep]
+  \item \textbf{Naturais:} $\mathbb{N} = \{0, 1, 2, 3, \dots\}$.
+  \item \textbf{Inteiros:} $\mathbb{Z} = \{\dots, -2, -1, 0, 1, 2, \dots\}$.
+  \item \textbf{Racionais:} $\mathbb{Q}$ é o conjunto dos números que podem ser
+        escritos na forma $\dfrac{a}{b}$, com $a, b \in \mathbb{Z}$ e $b \neq 0$.
+\end{itemize}
+\end{definicao}
+
+Todo número natural é inteiro, e todo inteiro é racional (por exemplo,
+$-3 = \frac{-3}{1}$). Escrevemos
+\[
+  \mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q}.
+\]
+
+\subsection*{Representação decimal dos racionais}
+
+Ao dividir $a$ por $b$, um número racional sempre resulta em:
+\begin{itemize}[nosep]
+  \item um \textbf{decimal finito}: $\frac{3}{4} = 0{,}75$;\quad $\frac{7}{5} = 1{,}4$;
+  \item ou uma \textbf{dízima periódica}: $\frac{1}{3} = 0{,}333\ldots$;\quad
+        $\frac{5}{11} = 0{,}454545\ldots$
+\end{itemize}
+
+E o caminho contrário também funciona: toda dízima periódica pode ser escrita como fração.
+
+\begin{exemplo}[: dízima periódica simples]
+Vamos escrever $0{,}777\ldots$ como fração. Seja $x = 0{,}777\ldots$
+\[
+\begin{aligned}
+  10x &= 7{,}777\ldots\\
+  x   &= 0{,}777\ldots
+\end{aligned}
+\qquad\Longrightarrow\qquad
+10x - x = 7 \;\Longrightarrow\; 9x = 7 \;\Longrightarrow\; x = \frac{7}{9}.
+\]
+\end{exemplo}
+
+\begin{exemplo}[: dízima periódica composta]
+Seja $x = 0{,}1222\ldots$ Multiplicamos por $10$ e por $100$ para alinhar a parte
+que se repete:
+\[
+\begin{aligned}
+  100x &= 12{,}222\ldots\\
+   10x &= 1{,}222\ldots
+\end{aligned}
+\qquad\Longrightarrow\qquad
+90x = 11 \;\Longrightarrow\; x = \frac{11}{90}.
+\]
+\end{exemplo}
+
+% =========================================================
+\section{Números irracionais: $\sqrt{2}$, $\pi$ e outros}
+
+\begin{definicao}[: Número irracional]
+Um número é \textbf{irracional} quando \emph{não} pode ser escrito na forma
+$\frac{a}{b}$, com $a, b$ inteiros e $b \neq 0$. Sua representação decimal é
+\textbf{infinita e não periódica}. O conjunto dos irracionais é indicado por
+$\mathbb{I}$.
+\end{definicao}
+
+\noindent\textbf{Exemplos de números irracionais:}
+\begin{itemize}[nosep]
+  \item $\sqrt{2} = 1{,}41421356\ldots$ \quad e \quad $\sqrt{3} = 1{,}7320508\ldots$
+  \item $\pi = 3{,}14159265\ldots$ (a razão entre o comprimento e o diâmetro de qualquer circunferência);
+  \item $0{,}101001000100001\ldots$ (a quantidade de zeros aumenta, por isso nunca se repete um mesmo bloco).
+\end{itemize}
+
+\begin{atencao}
+\begin{itemize}[nosep]
+  \item Nem toda raiz é irracional: $\sqrt{9} = 3$ e $\sqrt{\frac{4}{25}} = \frac{2}{5}$ são racionais.
+        A raiz quadrada de um natural só é racional quando esse natural é um quadrado perfeito.
+  \item $3{,}14$ e $\frac{22}{7}$ são \emph{aproximações} racionais de $\pi$, e \emph{não} são iguais a $\pi$.
+  \item A calculadora mostra só algumas casas decimais. Ver $\sqrt{2} \approx 1{,}414213562$
+        na tela não quer dizer que a representação decimal termina ali.
+\end{itemize}
+\end{atencao}
+
+\subsection*{Por que $\sqrt{2}$ é irracional? (Para saber mais)}
+
+Suponha, por absurdo, que $\sqrt{2} = \frac{a}{b}$, com a fração já
+\emph{irredutível} ($a$ e $b$ sem fatores comuns). Então
+\[
+  2 = \frac{a^2}{b^2} \quad\Longrightarrow\quad a^2 = 2b^2 .
+\]
+Logo $a^2$ é par e, portanto, $a$ é par (o quadrado de um ímpar é ímpar).
+Escrevendo $a = 2k$:
+\[
+  (2k)^2 = 2b^2 \;\Longrightarrow\; 4k^2 = 2b^2 \;\Longrightarrow\; b^2 = 2k^2 ,
+\]
+e assim $b$ também é par. Mas então $a$ e $b$ têm o fator $2$ em comum, o que
+contradiz a fração ser irredutível. Assim, $\sqrt{2}$ \textbf{não} é racional.
+
+% =========================================================
+\section{A reta numérica real}
+
+\begin{definicao}[: Números reais]
+A reunião dos racionais com os irracionais forma o conjunto dos
+\textbf{números reais}:
+\[
+  \mathbb{R} = \mathbb{Q} \cup \mathbb{I}.
+\]
+A cada ponto da reta numérica corresponde exatamente um número real, e a cada
+número real corresponde exatamente um ponto da reta.
+\end{definicao}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+  \draw[thick] (0,0) rectangle (10,5);
+  \node at (9.5,4.6) {\large $\mathbb{R}$};
+  % Q
+  \draw[fill=blue!5, draw=blue!60!black] (3.2,2.5) ellipse (3 and 2.2);
+  \node[blue!60!black] at (5.1,3.9) {$\mathbb{Q}$};
+  \node at (5.2,2.4) {\small\shortstack{$\frac{1}{2}$\\[2pt] $0{,}75$\\[2pt] $0{,}\overline{3}$}};
+  % Z
+  \draw[fill=blue!12, draw=blue!60!black] (2.6,2.3) ellipse (1.9 and 1.5);
+  \node[blue!60!black] at (3.5,3.4) {$\mathbb{Z}$};
+  \node at (3.9,2.2) {\small $-3$};
+  % N
+  \draw[fill=blue!25, draw=blue!60!black] (2.0,2.1) ellipse (1 and 0.85);
+  \node[blue!60!black] at (2.0,2.5) {$\mathbb{N}$};
+  \node at (2.0,1.8) {\small $0,\ 1,\ 7$};
+  % I
+  \draw[fill=orange!15, draw=orange!80!black] (8.0,2.5) ellipse (1.4 and 2.0);
+  \node[orange!80!black] at (8.0,3.7) {$\mathbb{I}$};
+  \node at (8.0,2.2) {\small\shortstack{$\sqrt{2}$\\[3pt] $\pi$\\[3pt] $\sqrt{3}$}};
+\end{tikzpicture}
+\end{center}
+
+\subsection*{Localizando $\sqrt{2}$ na reta com régua e compasso}
+
+Já vimos na Motivação que o lado do quadrado de área $2$ é igual à
+\textbf{diagonal de um quadrado de lado 1}. Então:
+\begin{enumerate}[nosep]
+  \item Construa um quadrado de lado $1$ com um dos lados sobre a reta, de $0$ a $1$.
+  \item Trace a diagonal que parte do $0$. Ela mede $\sqrt{2}$.
+  \item Com a ponta seca do compasso no $0$ e abertura igual à diagonal, trace um
+        arco até cortar a reta. O ponto obtido é $\sqrt{2}$.
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[scale=2]
+  \draw[-{Latex}] (-1.6,0) -- (2.7,0);
+  \foreach \x in {-1,0,1,2}
+    \draw (\x,0.05) -- (\x,-0.05) node[below] {$\x$};
+  \draw[fill=blue!10] (0,0) rectangle (1,1);
+  \draw[very thick, red] (0,0) -- (1,1)
+    node[midway, above left] {$\sqrt{2}$};
+  \draw[dashed, red] (1,1) arc[start angle=45, end angle=0, radius={sqrt(2)}];
+  \draw[dashed, red] (1,1) arc[start angle=45, end angle=180, radius={sqrt(2)}];
+  \fill[red] ({sqrt(2)},0) circle (0.035);
+  \fill[red] ({-sqrt(2)},0) circle (0.035);
+  \node[red, above right] at ({sqrt(2)},0) {$\sqrt{2}$};
+  \node[red, above left]  at ({-sqrt(2)},0) {$-\sqrt{2}$};
+\end{tikzpicture}
+\end{center}
+
+Girando o arco para o outro lado, localizamos também $-\sqrt{2}$.
+
+% =========================================================
+\section{Aproximações e comparação de números reais}
+
+Não conseguimos escrever todas as casas decimais de $\sqrt{2}$, mas podemos
+\textbf{encaixá-lo} entre racionais cada vez mais próximos:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{c|c|c}
+  Tentativa & Quadrado & Conclusão \\ \hline
+  $1{,}4$   & $1{,}96$   & menor que 2 \\
+  $1{,}5$   & $2{,}25$   & maior que 2 $\;\Rightarrow\; 1{,}4 < \sqrt{2} < 1{,}5$ \\ \hline
+  $1{,}41$  & $1{,}9881$ & menor que 2 \\
+  $1{,}42$  & $2{,}0164$ & maior que 2 $\;\Rightarrow\; 1{,}41 < \sqrt{2} < 1{,}42$ \\
+\end{tabular}
+\end{center}
+
+Repetindo o processo, conseguimos quantas casas decimais quisermos.
+
+\begin{exemplo}[: entre quais inteiros?]
+Entre quais inteiros consecutivos está $\sqrt{30}$?\\
+Como $25 < 30 < 36$, temos $\sqrt{25} < \sqrt{30} < \sqrt{36}$, ou seja,
+$5 < \sqrt{30} < 6$.
+\end{exemplo}
+
+\begin{exemplo}[: ordenando números reais]
+Coloque em ordem crescente: \quad $\pi$, \quad $-\sqrt{3}$, \quad $\frac{1}{3}$,
+\quad $-1{,}7$, \quad $0{,}33$, \quad $\frac{22}{7}$.
+
+\smallskip
+\noindent Usando aproximações decimais:
+$-\sqrt{3} \approx -1{,}732$; \ $\frac{1}{3} = 0{,}333\ldots$; \
+$\pi \approx 3{,}1416$; \ $\frac{22}{7} \approx 3{,}1429$. Logo,
+\[
+  -\sqrt{3} < -1{,}7 < 0{,}33 < \frac{1}{3} < \pi < \frac{22}{7}.
+\]
+\end{exemplo}
+
+% =========================================================
+\section{Exercícios}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+
+  \item Classifique cada número como natural ($\mathbb{N}$), inteiro ($\mathbb{Z}$),
+  racional ($\mathbb{Q}$) ou irracional ($\mathbb{I}$). Um número pode
+  pertencer a mais de um conjunto.
+  \begin{multicols}{5}
+  \begin{enumerate}[label=\alph*)]
+    \item $7$
+    \item $-3$
+    \item $\frac{2}{5}$
+    \item $0{,}75$
+    \item $0{,}333\ldots$
+    \item $\sqrt{9}$
+    \item $\sqrt{7}$
+    \item $\pi$
+    \item $-\sqrt{16}$
+    \item $\sqrt{0{,}01}$
+  \end{enumerate}
+  \end{multicols}
+
+  \item Escreva na forma de fração irredutível:
+  \begin{multicols}{3}
+  \begin{enumerate}[label=\alph*)]
+    \item $0{,}444\ldots$
+    \item $1{,}25$
+    \item $0{,}1212\ldots$
+  \end{enumerate}
+  \end{multicols}
+
+  \item Determine entre quais números inteiros consecutivos está cada número:
+  \begin{multicols}{4}
+  \begin{enumerate}[label=\alph*)]
+    \item $\sqrt{20}$
+    \item $\sqrt{50}$
+    \item $-\sqrt{8}$
+    \item $\sqrt{99}$
+  \end{enumerate}
+  \end{multicols}
+
+  \item Coloque em ordem crescente: \quad $\sqrt{5}$, \quad $2{,}2$, \quad
+  $\frac{9}{4}$, \quad $2{,}23$.
+
+  \item Julgue como verdadeira (V) ou falsa (F):
+  \begin{enumerate}[label=\alph*)]
+    \item Todo número natural é racional.
+    \item $\sqrt{16}$ é irracional.
+    \item A soma de dois números irracionais é sempre irracional.
+    \item $3{,}14 = \pi$.
+    \item Entre $1$ e $2$ existem infinitos números irracionais.
+  \end{enumerate}
+
+  \item No papel quadriculado abaixo, cada quadradinho tem lado $1$.
+  \begin{center}
+  \begin{tikzpicture}[scale=0.8]
+    \draw[step=1, gray!60] (0,0) grid (3,3);
+    \filldraw[fill=blue!20, draw=blue!70!black, very thick]
+      (1,0) -- (3,1) -- (2,3) -- (0,2) -- cycle;
+  \end{tikzpicture}
+  \end{center}
+  \begin{enumerate}[label=\alph*)]
+    \item Calcule a área do quadrado azul. (\emph{Dica:} subtraia da área do
+          quadrado $3\times 3$ as áreas dos quatro triângulos.)
+    \item Qual é a medida exata do lado do quadrado azul?
+    \item Usando régua e compasso, localize esse número na reta numérica.
+  \end{enumerate}
+
+  \item \textbf{(Contextualizada)} Um terreno quadrado tem área de
+  $50\,\text{m}^2$. O proprietário quer cercá-lo com \textbf{3 voltas} de arame.
+  \begin{enumerate}[label=\alph*)]
+    \item Entre quais inteiros consecutivos está a medida do lado do terreno?
+    \item Use a calculadora para aproximar o lado com duas casas decimais.
+    \item Quantos metros de arame, aproximadamente, ele deve comprar?
+  \end{enumerate}
+
+  \item A calculadora de Júlia mostrou $\sqrt{2} = 1{,}414213562$. Ela concluiu:
+  ``\,$\sqrt{2}$ é racional, pois tem uma quantidade finita de casas decimais''.
+  Explique o erro de Júlia.
+
+\end{enumerate}
+
+\begin{desafio}
+Sabendo que $\sqrt{2}$ é irracional, mostre que os números abaixo também são irracionais:
+\begin{multicols}{2}
+\begin{enumerate}[label=\alph*)]
+  \item $\sqrt{2} + 1$
+  \item $\dfrac{\sqrt{2}}{2}$
+\end{enumerate}
+\end{multicols}
+\noindent\emph{Dica:} suponha que o número seja racional e chegue a uma contradição.
+\end{desafio}
+
+% =========================================================
+\newpage
+\section*{Gabarito}
+\begin{enumerate}[label=\textbf{\arabic*.}]
+
+  \item a) $\mathbb{N}, \mathbb{Z}, \mathbb{Q}$ \quad
+        b) $\mathbb{Z}, \mathbb{Q}$ \quad
+        c) $\mathbb{Q}$ \quad
+        d) $\mathbb{Q}$ \quad
+        e) $\mathbb{Q}$ \quad
+        f) $\sqrt{9}=3$: $\mathbb{N}, \mathbb{Z}, \mathbb{Q}$ \quad
+        g) $\mathbb{I}$ \quad
+        h) $\mathbb{I}$ \quad
+        i) $-\sqrt{16}=-4$: $\mathbb{Z}, \mathbb{Q}$ \quad
+        j) $\sqrt{0{,}01} = 0{,}1 = \frac{1}{10}$: $\mathbb{Q}$.
+
+  \item a) $x = 0{,}444\ldots \Rightarrow 10x - x = 4 \Rightarrow x = \frac{4}{9}$. \quad
+        b) $1{,}25 = \frac{125}{100} = \frac{5}{4}$. \\
+        c) $100x - x = 12 \Rightarrow x = \frac{12}{99} = \frac{4}{33}$.
+
+  \item a) $16 < 20 < 25 \Rightarrow 4 < \sqrt{20} < 5$. \quad
+        b) $49 < 50 < 64 \Rightarrow 7 < \sqrt{50} < 8$. \\
+        c) $4 < 8 < 9 \Rightarrow 2 < \sqrt{8} < 3 \Rightarrow -3 < -\sqrt{8} < -2$. \quad
+        d) $81 < 99 < 100 \Rightarrow 9 < \sqrt{99} < 10$.
+
+  \item $\sqrt{5} \approx 2{,}236$ e $\frac{9}{4} = 2{,}25$. Logo,
+        $2{,}2 < 2{,}23 < \sqrt{5} < \frac{9}{4}$.
+
+  \item a) V. \quad
+        b) F, pois $\sqrt{16} = 4$. \quad
+        c) F. Contraexemplo: $\sqrt{2} + (-\sqrt{2}) = 0$. \quad
+        d) F, pois $3{,}14$ é apenas uma aproximação. \quad
+        e) V. Por exemplo, $\frac{\sqrt{2}}{n} + 1$ para $n = 1, 2, 3, \ldots$
+
+  \item a) $9 - 4 \cdot \frac{2 \cdot 1}{2} = 9 - 4 = 5$. \quad
+        b) $\sqrt{5}$. \quad
+        c) Construa um retângulo de base $2$ e altura $1$ a partir do $0$.
+        Sua diagonal mede $\sqrt{5}$ (é o lado do quadrado azul). Com o compasso
+        centrado em $0$, transporte essa medida para a reta.
+
+  \item a) $49 < 50 < 64$, logo o lado está entre $7$ e $8$ metros. \quad
+        b) $\sqrt{50} \approx 7{,}07\,\text{m}$. \quad
+        c) $3 \cdot 4 \cdot 7{,}07 = 84{,}84$, ou seja, cerca de $85\,\text{m}$ de arame.
+
+  \item A calculadora exibe apenas uma quantidade limitada de dígitos. O número
+        $1{,}414213562$ é uma \emph{aproximação} de $\sqrt{2}$ (de fato,
+        $1{,}414213562^2 \neq 2$). A representação decimal de $\sqrt{2}$ é infinita e
+        não periódica.
+
+\end{enumerate}
+
+\noindent\textbf{Desafio.}
+\begin{enumerate}[label=\alph*), leftmargin=*]
+  \item Se $\sqrt{2} + 1 = r$, com $r$ racional, então
+        $\sqrt{2} = r - 1$ seria racional (diferença de racionais), o que é um absurdo.
+  \item Se $\frac{\sqrt{2}}{2} = r$, com $r$ racional, então $\sqrt{2} = 2r$
+        seria racional, o que também é um absurdo.
+
+\end{enumerate}
+
+\end{document}
